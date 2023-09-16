@@ -30,13 +30,18 @@
     text-align: center;
 }
 
-#health {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+.sidebarSubheader {
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
+.sidebarSubheader .value {}
 
 #statsTitle {
 
