@@ -2,20 +2,20 @@ class Message {
     from;
     content;
     constructor(from, content) {
-        this.from = from == "user" ? "user" : "bot";
+        this.from = from == "user" ? "user" : "system";
         this.content = content;
     }
 }
-
-messages = [new Message("bot", "Hello, I am a bot. I am here to help you with your queries. Please type your query in the text box below and I will try to answer it for you."),
-new Message("bot", "You can ask me about the following topics:"), new Message("user", "What topics!!!")];
+var messages = [new Message("system", "Hello, I am a bot. I am here to help you with your queries. Please type your query in the text box below and I will try to answer it for you."),
+new Message("system", "You can ask me about the following topics:"), new Message("user", "What topics!!!")];
 
 
 
 function messageBuilder(messageData) {
     var message = $("<div></div>").addClass("message");
+    messages.push(messageData);
     var messageContent = $("<div></div>").addClass("messageContent").addClass("frosted");
-    if (messageData.from == "bot") {
+    if (messageData.from == "system") {
         messageContent.addClass("botMessage");
     }
     else {
