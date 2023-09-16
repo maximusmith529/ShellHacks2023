@@ -1,8 +1,7 @@
 #sidebar {
-    position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
+    width: 400px;
     height: 100vh;
     color: var(--main-font-color);
     display: flex;

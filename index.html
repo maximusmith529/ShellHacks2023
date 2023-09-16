@@ -1,49 +1,61 @@
-< !DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/master.css">
-        <title>Story Forge</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <title>Story Forge</title>
+</head>
 
-    <body>
-        <div id="sidebar" class="frosted">
-            <div id="name">Rupert the Ball Stomper </div>
-            <div id="health">Health: <span class="value">20</span></div>
-            <div class="sidebarTitle" id="statsTitle">Stats</div>
-            <div id="statsContainer">
-                <div class="stat">
-                    <div class="value">6</div>
-                    <div class="statName">STR</div>
-                </div>
-                <div class="stat">
-                    <div class="value">2</div>
-                    <div class="statName">DEX</div>
-                </div>
-                <div class="stat">
-                    <div class="value">25</div>
-                    <div class="statName">CONS</div>
-                </div>
-                <div class="stat">
-                    <div class="value">3</div>
-                    <div class="statName">INT</div>
-                </div>
-                <div class="stat">
-                    <div class="value">9</div>
-                    <div class="statName">WIS</div>
-                </div>
-                <div class="stat">
-                    <div class="value">12</div>
-                    <div class="statName">CHR</div>
-                </div>
+<body>
+    <div id="sidebar" class="frosted">
+        <div id="name">Rupert the Ball Stomper </div>
+        <div id="health">Health: <span class="value">20</span></div>
+        <div class="sidebarTitle" id="statsTitle">Stats</div>
+        <div id="statsContainer">
+            <div class="stat">
+                <div class="value">6</div>
+                <div class="statName">STR</div>
             </div>
-            <div id="bottomButtons">
-                <div class="button">Inventory</div>
-                <div class="button">Settings</div>
+            <div class="stat">
+                <div class="value">2</div>
+                <div class="statName">DEX</div>
+            </div>
+            <div class="stat">
+                <div class="value">25</div>
+                <div class="statName">CONS</div>
+            </div>
+            <div class="stat">
+                <div class="value">3</div>
+                <div class="statName">INT</div>
+            </div>
+            <div class="stat">
+                <div class="value">9</div>
+                <div class="statName">WIS</div>
+            </div>
+            <div class="stat">
+                <div class="value">12</div>
+                <div class="statName">CHR</div>
             </div>
         </div>
-    </body>
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-    </html>
+        <div id="bottomButtons">
+            <div class="button">Inventory</div>
+            <div class="button">Settings</div>
+        </div>
+    </div>
+    <div id="content">
+        <div id="chatScreen">
+            <div id="messages">TEST</div>
+            <div id="chatInput" class="frosted">
+                <input type="text" id="chatInputBox" placeholder="Type here...">
+                <div id="chatSendButton">Send</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</html>
