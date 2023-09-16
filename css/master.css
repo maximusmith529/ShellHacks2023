@@ -5,6 +5,8 @@
     --frosted-glass-color: rgba(3, 3, 3, 0.35);
     --frosted-glass-hover-color: rgba(10, 10, 10, 0.35);
     --body-font: 'Arial', sans-serif;
+    --item-size: 8rem;
+    --inventory-gap: 4rem;
 }
 
 body {

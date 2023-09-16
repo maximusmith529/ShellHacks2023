@@ -1,0 +1,59 @@
+#inventory {
+    position: fixed;
+    box-sizing: border-box;
+    width: 80%;
+    height: 90%;
+    top: 5%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--inventory-gap);
+}
+
+#inventoryContent {
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    gap: var(--inventory-gap);
+}
+
+.item {
+    position: relative;
+    width: var(--item-size);
+    height: var(--item-size);
+    background-color: var(--frosted-glass-color);
+    transition: background-color 0.2s;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.item:hover {
+    background-color: var(--frosted-glass-hover-color);
+}
+
+.itemImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    border: none;
+}
+
+.itemTitle {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    font-size: 1.25rem;
+}
+
+.itemCount {
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
+    font-size: 1.5rem;
+}
+
+#inventoryCloseButton {
+    justify-self: flex-end;
+    align-self: flex-end;
+}
