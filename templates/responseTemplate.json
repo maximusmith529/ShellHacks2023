@@ -1,0 +1,18 @@
+
+{
+    "messageToPlayer": "String",
+    "requiredRoll (OPTIONAL)": "String",
+    "potentialActions (OPTIONAL) [MAX LENGTH: 3]": [
+        "STRING"
+    ],
+    "environmentalEffects": {
+        "inForest": "Boolean",
+        "inCave": "Boolean",
+        "inTown": "Boolean",
+        "inDungeon": "Boolean",
+        "isNight": "Boolean",
+        "isDay": "Boolean",
+        "isRaining": "Boolean",
+        "isSnowing": "Boolean"
+    }
+}
