@@ -12,8 +12,8 @@
 }
 
 body {
-    background: linear-gradient(45deg, #fecc66, #f75c03);
     color: var(--main-font-color);
+    background: linear-gradient(0deg, #9f6673, #793d78);
     font-family: var(--body-font);
     margin: 0;
     padding: 0;
@@ -24,6 +24,14 @@ body {
     overflow: hidden;
 }
 
+
+#rainCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
 
 #content {
     width: 100%;
@@ -60,4 +68,11 @@ body {
 .contentScreen.hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+
+.frosted {
+    background-color: var(--frosted-glass-color);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
