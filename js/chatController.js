@@ -37,6 +37,7 @@ function sendMessage() {
     messageBuilder(message);
     $("#chatInputBox").val("");
     messages.push(message);
+    messageBuilder(askGPT(message.content));
 
 }
 
