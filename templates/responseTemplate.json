@@ -14,5 +14,10 @@
         "isDay": "Boolean",
         "isRaining": "Boolean",
         "isSnowing": "Boolean"
+    },
+    "characterStats":{
+        "strength": "Int",
+        "health": "Int"
     }
+
 }
