@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/roll.css">
     <link rel="stylesheet" href="css/inventory.css">
     <title>Story Forge</title>
     <script src="js/jquery.js"></script>
     <script async defer src="js/chatController.js"></script>
     <script async defer src="js/contentController.js"></script>
+    <script async defer src="js/rollController.js"></script>
     <!-- Favicon  -->
     <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
@@ -56,13 +58,19 @@
         </div>
     </div>
     <div id="content">
-        <div id="chatScreen">
+        <div id="chatScreen" class="contentScreen">
             <div id="messages"></div>
             <div id="chatInput" class="frosted">
                 <input type="text" id="chatInputBox" placeholder="Type here...">
                 <div id="chatSendButton" class="button">Send</div>
             </div>
         </div>
+        <div id="rollScreen" class="contentScreen">
+            <div id="rollPrompt" class="frosted">
+                <div id="rollPromptText">Roll a <span class="value">d20</span>!</div>
+                <div id="dicePreview"></div>
+                <div id="rollPromptButton" class="button">Roll</div>
+            </div>
         <div id="inventory" class="frosted">
             <div id="inventoryContent">
                 <div class="item">

@@ -29,10 +29,22 @@ body {
     height: 100vh;
 }
 
+
+.button {
+    cursor: pointer;
+}
+
 .button:hover {
     background-color: var(--frosted-glass-hover-color) !important;
 }
 
 .button:active {
     background-color: var(--frosted-glass-color) !important;
+}
+
+
+.contentScreen {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
