@@ -1,10 +1,10 @@
 $("#content > * ").hide();
 
 
-function showContentView(id) {
+function showContentScreen(id) {
     $("#content > * ").hide();
     $("#" + id).show();
     // Add a class to the view that is being shown
-    $("#content > * ").removeClass("activeView");
-    $("#" + id).addClass("activeView");
+    $("#content > * ").removeClass("activeScreen");
+    $("#" + id).addClass("activeScreen");
 }
