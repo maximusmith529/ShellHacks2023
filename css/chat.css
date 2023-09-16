@@ -26,8 +26,9 @@
 
 #chatSendButton {
     height: 100%;
-    padding: 0.5rem;
     text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
     aspect-ratio: 1;
     background-color: var(--frosted-glass-color);
     color: white;
@@ -38,4 +39,34 @@
     place-items: center;
     font-weight: bold;
     cursor: pointer;
+}
+
+
+.botMessage {
+
+    flex-direction: row;
+
+
+}
+
+.messageContent {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.15rem;
+    padding: 1rem;
+    max-width: 80%;
+    background-color: var(--frosted-glass-color);
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 25px;
+}
+
+.userMessage {
+    flex-direction: row-reverse;
+    margin-left: auto;
+    background-color: var(--frosted-accent-color)
 }

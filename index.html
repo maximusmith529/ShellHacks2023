@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/chat.css">
     <title>Story Forge</title>
+    <script src="js/jquery.js"></script>
+    <script async defer src="js/chatController.js"></script>
 </head>
 
 <body>
@@ -48,10 +50,10 @@
     </div>
     <div id="content">
         <div id="chatScreen">
-            <div id="messages">TEST</div>
+            <div id="messages"></div>
             <div id="chatInput" class="frosted">
                 <input type="text" id="chatInputBox" placeholder="Type here...">
-                <div id="chatSendButton">Send</div>
+                <div id="chatSendButton" class="button">Send</div>
             </div>
         </div>
     </div>
