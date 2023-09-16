@@ -10,14 +10,18 @@
         "inCave": "Boolean",
         "inTown": "Boolean",
         "inDungeon": "Boolean",
-        "isNight": "Boolean",
-        "isDay": "Boolean",
+        "lightLevel": "Int",
         "isRaining": "Boolean",
         "isSnowing": "Boolean"
     },
     "characterStats":{
-        "strength": "Int",
-        "health": "Int"
+        "strength (OPTIONAL)": "Int",
+        "health (OPTIONAL)": "Int",
+        "intelligence (OPTIONAL)": "Int",
+        "dexterity (OPTIONAL)": "Int",
+        "charisma (OPTIONAL)": "Int",
+        "wisdom (OPTIONAL)": "Int",
+        "constitution (OPTIONAL)": "Int"
     }
 
 }

@@ -1,6 +1,6 @@
 //StoryForge
 //Shellhacks 2023
-//Team: Seth Lenhof, Maximus Smith
+//Backend team: Seth Lenhof, Maximus Smith
 
 
 import OpenAI from "openai";
@@ -11,7 +11,7 @@ const openai = new OpenAI();
 async function main() {
   const completion = await openai.chat.completions.create({
     messages: [{ role: "system", content: "You are a helpful assistant." }],
-    model: "gpt-3.5-turbo",
+    model: "gpt-4",
   });
 
   console.log(completion.choices[0]);
