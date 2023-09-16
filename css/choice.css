@@ -1,0 +1,39 @@
+.option {
+    width: 95%;
+    text-align: center;
+    font-size: 1.6rem;
+    padding: 10px;
+    border-radius: 20px;
+    opacity: 0;
+    animation: fade-in-down 0.5s calc(var(--index) * 0.15s) ease-in-out forwards;
+}
+
+@keyframes fade-in-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#choicePromptText {
+    font-size: 2rem;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#choices {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
