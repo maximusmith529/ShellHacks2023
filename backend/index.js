@@ -11,9 +11,10 @@ async function sendMessage(message) {
       top_p: 0,
       frequency_penalty: 0,
       presence_penalty: 0,
-      "messages": [{"role": "system", "content": systemPrompt },{"role": "user", "content": message }]
+      "messages": [{"role": "system", "content": systemPrompt },{messages},{"role": "user", "content": message }]
   };
-
+  // adds user message to chatScreen
+  messageBuilder(newMessage('user', message));
   try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
@@ -26,6 +27,9 @@ async function sendMessage(message) {
 
       const data = await response.json();
       document.getElementById("gptResponse").innerHTML = data.choices[0].message.content;
+
+      // adds to chatScreen
+      messageBuilder(newMessage('system',data.choices[0].message.content.messageToPlayer))
       return data.choices[0].message;
   } catch (error) {
   console.error('Error calling the ChatGPT API:', error);
