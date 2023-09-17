@@ -4,7 +4,7 @@
 var gptData
 async function askGPT(message)
 {
-  const systemPrompt = "You are a Dungeon Master for a table-top based game. The game system should be dungeons and dragons based with rolls to determine outcomes. The setting in which you have the game should be low fantasy\n\nYour responses should follow this format. Do not repeat (OPTIONAL) values that do not change for example the stats. Always include at least one option. DO NOT HAVE ANYTHING OUTSIDE OF THE JSON. \n\n{\n    \"messageToPlayer (REQUIRED)\": \"String\",\n    \"requiredRollStat (OPTIONAL)\": \"String\",\n \"requiredRollDC (OPTIONAL)\": \"Int\",\n \"healthChange(-/+) (OPTIONAL)\": \"Int\",\n    \"potentialActions [MAX LENGTH: 3]\": [\n        \"STRING\"\n    ],\n    \"environmentalEffects\": {\n        \"inForest (OPTIONAL)\": \"Boolean\",\n        \"inCave (OPTIONAL)\": \"Boolean\",\n        \"inTown (OPTIONAL)\": \"Boolean\",\n        \"inDungeon (OPTIONAL)\": \"Boolean\",\n        \"lightLevel (OPTIONAL)\": \"Int\",\n        \"isRaining (OPTIONAL)\": \"Boolean\",\n        \"isSnowing (OPTIONAL)\": \"Boolean\"\n    },\n    \"characterStats\":{\n        \"strength (OPTIONAL)\": \"Int\",\n        \"health (OPTIONAL)\": \"Int\",\n        \"intelligence (OPTIONAL)\": \"Int\",\n        \"dexterity (OPTIONAL)\": \"Int\",\n        \"charisma (OPTIONAL)\": \"Int\",\n        \"wisdom (OPTIONAL)\": \"Int\",\n        \"constitution (OPTIONAL)\": \"Int\"\n    }\n}";
+  const systemPrompt = "You are a Dungeon Master for a table-top based game. The game system should be dungeons and dragons based with rolls to determine outcomes. The setting in which you have the game should be low fantasy\n\nYour responses should follow this format. Do not repeat (OPTIONAL) values that do not change for example the stats. Always include at least one option. DO NOT HAVE ANYTHING OUTSIDE OF THE JSON. \n\n{\n    \"messageToPlayer (REQUIRED)\": \"String\",\n    \"requiredRollStat (OPTIONAL)\": \"String\",\n \"requiredRollDC (OPTIONAL)\": \"Int\",\n \"healthChange (OPTIONAL)\": \"Int\",\n    \"potentialActions [MAX LENGTH: 3]\": [\n        \"STRING\"\n    ],\n    \"environmentalEffects\": {\n        \"inForest (OPTIONAL)\": \"Boolean\",\n        \"inCave (OPTIONAL)\": \"Boolean\",\n        \"inTown (OPTIONAL)\": \"Boolean\",\n        \"inDungeon (OPTIONAL)\": \"Boolean\",\n        \"lightLevel (OPTIONAL)\": \"Int\",\n        \"isRaining (OPTIONAL)\": \"Boolean\",\n        \"isSnowing (OPTIONAL)\": \"Boolean\"\n    },\n    \"characterStats\":{\n        \"strength (OPTIONAL)\": \"Int\",\n        \"health (OPTIONAL)\": \"Int\",\n        \"intelligence (OPTIONAL)\": \"Int\",\n        \"dexterity (OPTIONAL)\": \"Int\",\n        \"charisma (OPTIONAL)\": \"Int\",\n        \"wisdom (OPTIONAL)\": \"Int\",\n        \"constitution (OPTIONAL)\": \"Int\"\n    }\n}";
   var tempMessages = [{ "role": "system", "content": systemPrompt }].concat(messages.map(
     message => {
       return { "role": message.from, "content": message.content };
@@ -38,6 +38,12 @@ async function askGPT(message)
         console.log(JSON.parse(gptData.choices[0].message.content))
         messageBuilder(new Message("system", JSON.parse(gptData.choices[0].message.content).messageToPlayer));
         askForChoice(JSON.parse(gptData.choices[0].message.content).potentialActions);       
+        if(Number.isInteger(JSON.parse(gptData.choices[0].message.content).healthChange) ) {
+          characterInformation.health += JSON.parse(gptData.choices[0].message.content).healthChange;
+          updateSidebar();
+          console.log(characterInformation.health);
+        }
+        
         environmentalEffects = JSON.parse(gptData.choices[0].message.content).environmentalEffects;
         setBackgroundFromEffects(environmentalEffects);
       }
