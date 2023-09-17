@@ -50,13 +50,14 @@ function promptToRoll(rollResult, diceNumber) {
     $("#rollPromptText .value").text(dice[diceNumber].name);
     $("#dicePreview").css("clip-path", dice[diceNumber].shape);
     $("#dicePreview").text(diceNumber);
-    console.log(rollResult)
     $("#dicePreview").css("background-color", dice[diceNumber].color);
 
     $("#rollPromptButton").click(() => {
         // Roll the dice
         visualRollDice(rollResult, diceNumber, oldScreen);
-    })
+        let tmpData = JSON.parse(data.choices[0].message.content);
+        askGPT(skillCheckRoll(rollResult, tmpData.requiredRollStat, tmpData.requiredDifficultyClass) ? "I passed the skill check" : "I failed the skill check");
+    });
 }
 
 
@@ -69,37 +70,38 @@ function visualRollDice(rollResult, diceNumber, oldScreen) {
         if (rollCount > 10) {
             clearInterval(rollInterval);
             $("#dicePreview").text(rollResult);
-            setTimeout(function () { showContentScreen(oldScreen); }, 1000);
+            setTimeout(function () { 
+                showContentScreen(oldScreen);
+            }, 1000);
         }
-    }
-        , 100);
+    }, 100);
 
 }
 
-function skillCheckRoll(rolltype, difficultyClass) {
-    let roll = rollDice(20);
-
+function skillCheckRoll(generatedRoll, rolltype, difficultyClass) {
     switch (rolltype)
     {
         case "Strength":
-            roll += characterInformation.stats.strength - 10;
+            generatedRoll += characterInformation.stats.strength - 10;
             break;
         case "Dexterity":
-            roll += characterInformation.stats.dexterity - 10;
+            generatedRoll += characterInformation.stats.dexterity - 10;
             break;
         case "Constitution":
-            roll += characterInformation.stats.constitution - 10;
+            generatedRoll += characterInformation.stats.constitution - 10;
             break;
         case "Intelligence":
-            roll += characterInformation.stats.intelligence - 10;
+            generatedRoll += characterInformation.stats.intelligence - 10;
             break;
         case "Wisdom":
-            roll += characterInformation.stats.wisdom - 10;
+            generatedRoll += characterInformation.stats.wisdom - 10;
             break;
         case "Charisma":
-            roll += characterInformation.stats.charisma - 10;
+            generatedRoll += characterInformation.stats.charisma - 10;
             break;
     }
 
-    return roll >= difficultyClass;
+    return generatedRoll >= difficultyClass;
 }
+
+$("#diceRollButton").click(() => rollDice(20));
