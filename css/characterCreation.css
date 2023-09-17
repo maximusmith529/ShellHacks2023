@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    display: none;
 }
 
 #characterCreationContent {
@@ -58,9 +59,10 @@
     text-align: center;
 }
 
-#characterClassButtons, #characterRaceButtons {
+#characterClassButtons,
+#characterRaceButtons {
     display: grid;
-    grid-template-columns: 33% 33% 33%; 
+    grid-template-columns: 33% 33% 33%;
     gap: 1rem;
 }
 

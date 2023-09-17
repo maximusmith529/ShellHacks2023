@@ -23,6 +23,8 @@ function messageBuilder(messageData) {
     var messageContent = $("<div></div>").addClass("messageContent").addClass("frosted");
     if (messageData.from == "system") {
         messageContent.addClass("botMessage");
+        // Remove messagePreview
+        $("#messagePreviewMessage").remove();
     }
     else {
         messageContent.addClass("userMessage");
@@ -40,10 +42,23 @@ function sendMessage() {
     if (message.content == "") {
         return;
     }
+    if ($("#messagePreviewMessage").attr("id") != null) {
+        return;
+    }
+
     messageBuilder(message);
     $("#chatInputBox").val("");
     messages.push(message);
+    var messagePreviewMessage = $("<div></div>").attr("id", "messagePreviewMessage").addClass("message");
+    var messagePreview = $("<div></div>").attr("id", "messagePreview").addClass("frosted")
+    // Add 3 dots, each with a css variable for their index
+    for (var i = 0; i < 3; i++) {
+        var dot = $("<div></div>").addClass("dot").css("--dot-index", i);
+        messagePreview.append(dot);
+    }
 
+    messagePreviewMessage.append(messagePreview);
+    $("#messages").append(messagePreviewMessage);
     askGPT(message.content)
 }
 

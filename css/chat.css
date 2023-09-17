@@ -56,7 +56,7 @@
 }
 
 .messageContent {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin-bottom: 0.15rem;
     padding: 1rem;
@@ -82,4 +82,48 @@
     flex-direction: column;
     width: 100%;
     max-width: 100%;
+}
+
+
+.dot {
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: var(--main-font-color);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+    line-height: 0;
+    animation: messagePreviewDot 3s calc(var(--dot-index) * -0.2s) ease-in-out infinite;
+}
+
+#messagePreview {
+    display: inline;
+    width: 5rem;
+    height: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Floats up and down while changing opacicty */
+@keyframes messagePreviewDot {
+    0% {
+        transform: translateY(1.5px) translateX(25%);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-2.5px) translateX(25%);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(1.5px) translateX(25%);
+        opacity: 1;
+    }
+
 }
