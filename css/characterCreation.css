@@ -78,6 +78,9 @@
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button.selected {
