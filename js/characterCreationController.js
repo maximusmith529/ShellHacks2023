@@ -44,22 +44,22 @@ let currentRace = "";
 
 for (let i = 0; i < classes.length; i++) {
     let button = $("<div>");
-    button.addClass("button");
+    button.addClass("button frosted");
     button.text(classes[i]);
     classesContainer.append(button);
 
-    button.click(function() {
+    button.click(function () {
         setActiveClass(button);
     });
 }
 
 for (i = 0; i < races.length; i++) {
     let button = $("<div>");
-    button.addClass("button");
+    button.addClass("button frosted");
     button.text(races[i]);
     racesContainer.append(button);
 
-    button.click(function() {
+    button.click(function () {
         setActiveRace(button)
     });
 }
@@ -85,17 +85,17 @@ for (i = 0; i < stats.length; i++) {
     let decrement = $("<div>");
     decrement.addClass("button");
     decrement.text("-");
-    decrement.click(function() {
+    decrement.click(function () {
         decrementStat(stat, statValueText);
     });
     statValue.append(decrement);
-   
+
     statValue.append(statValueText);
 
     let increment = $("<div>");
     increment.addClass("button");
     increment.text("+");
-    increment.click(function() {
+    increment.click(function () {
         incrementStat(stat, statValueText);
     });
     statValue.append(increment);
@@ -103,7 +103,7 @@ for (i = 0; i < stats.length; i++) {
 
 let characterInformation;
 
-$("#characterCreateButton").click(function() {
+$("#characterCreateButton").click(function () {
     characterInformation = {
         name: $("#characterNameInput").val(),
         health: 20,
@@ -149,7 +149,7 @@ function decrementStat(selection, text) {
     selection.attr("value", parseInt(selection.attr("value"), 10) - 1);
     text.text(selection.attr("value"));
     availablePoints += cost;
-    
+
     updatePointsLeft();
 }
 
@@ -171,7 +171,6 @@ function incrementStat(selection, text) {
     updatePointsLeft();
 }
 
-function updatePointsLeft()
-{
+function updatePointsLeft() {
     pointsLeft.text("Points left: " + availablePoints);
 }
