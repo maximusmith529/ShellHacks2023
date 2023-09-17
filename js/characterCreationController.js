@@ -83,7 +83,7 @@ for (i = 0; i < stats.length; i++) {
     statValueText.text(stat.attr("value")).addClass("statValueFieldValue");
 
     let decrement = $("<div>");
-    decrement.addClass("button");
+    decrement.addClass("button frosted");
     decrement.text("-");
     decrement.click(function () {
         decrementStat(stat, statValueText);
@@ -93,7 +93,7 @@ for (i = 0; i < stats.length; i++) {
     statValue.append(statValueText);
 
     let increment = $("<div>");
-    increment.addClass("button");
+    increment.addClass("button frosted");
     increment.text("+");
     increment.click(function () {
         incrementStat(stat, statValueText);

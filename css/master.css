@@ -9,6 +9,7 @@
     --inventory-gap: 4rem;
     --accent-color: #fecc66;
     --frosted-accent-color: rgba(200, 255, 200, 0.35);
+    --gradient-purple: #793d78;
 }
 
 body {
@@ -75,4 +76,15 @@ body {
     background-color: var(--frosted-glass-color);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+}
+
+#siteTitle {
+    font-family: Afterkilly, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: 0.2rem;
+    font-size: 4.5rem;
+}
+
+@font-face {
+    font-family: 'Afterkilly';
+    src: url("../fonts/Afterkilly.ttf");
 }
