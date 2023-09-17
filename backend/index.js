@@ -37,7 +37,6 @@ async function askGPT(message) {
         console.log(JSON.parse(data.choices[0].message.content))
         messageBuilder(new Message("system", JSON.parse(data.choices[0].message.content).messageToPlayer));
         askForChoice(JSON.parse(data.choices[0].message.content).potentialActions);       
-        //set the environmental factors
         environmentalEffects = JSON.parse(data.choices[0].message.content).environmentalEffects;
         setBackgroundFromEffects(environmentalEffects);
       }
