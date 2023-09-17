@@ -25,7 +25,7 @@ async function askGPT(message)
       let response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer sk-', // Replace with your API key
+          'Authorization': 'Bearer KEY', // Replace with your API key
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody)
@@ -35,11 +35,9 @@ async function askGPT(message)
       console.log(data)
       try
       { 
+        console.log(JSON.parse(data.choices[0].message.content))
         messageBuilder(new Message("system", JSON.parse(data.choices[0].message.content).messageToPlayer));
-        askForChoice(data.choices[0].message.potentialActions, (choice) =>{
-          messageBuilder(new Message("user", choice));
-          askGPT(choice);
-      });
+        askForChoice(JSON.parse(data.choices[0].message.content).potentialActions);
       }
       catch (error)
       {
