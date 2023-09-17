@@ -19,6 +19,9 @@ function getColorFromlightLevel(lightLevelPercent) {
     } else if (environmentalEffects.inCave) {
         color1 = { r: 22, g: 22, b: 22 };
     }
+    else if (environmentalEffects.inTown) {
+        color1 = { r: 0x66, g: 0x66, b: 0x66 };
+    }
     else {
         color1 = { r: 0xfe, g: 0xcc, b: 0x66 };
     }
@@ -261,7 +264,7 @@ function animate() {
         }
     }
 
-    if (environmentalEffects.inDungeon) {
+    if (environmentalEffects.inDungeon || environmentalEffects.inCave) {
         for (let i = 0; i < embers.length; i++) {
             embers[i].update();
             embers[i].draw();
