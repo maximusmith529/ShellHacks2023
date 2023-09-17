@@ -1,20 +1,22 @@
-function choiceBuilder(option, index, callback, originalScreen) {
+function choiceBuilder(option, index, callback) {
     $("#choices").append($(`<div class="option frosted button">${option}</div>`).css("--index", index).on("click", () => {
+        $("#choicePrompt").addClass("hidden");
+        messageBuilder(new Message("user", option));
+        askGPT(option)
         callback(option);
-        showContentScreen(originalScreen);
     }));
 }
 
 
 function askForChoice(options, callback) {
-    var currentScreen = $(".activeScreen").attr("id");
     callback = callback || function () { };
-    showContentScreen("choiceScreen");
+    $("#choices").empty();
+
+    $("#choicePrompt").removeClass("hidden");
+
     for (let i = 0; i < options.length; i++) {
-        choiceBuilder(options[i], i, callback, currentScreen);
+        choiceBuilder(options[i], i, callback);
     }
-    $("#choices").append($(`<div class="option frosted button">📝 Custom</div>`).css("--index", options.length)).on("click", () => {
-        showContentScreen("chatScreen");
-    });
+
 
 }

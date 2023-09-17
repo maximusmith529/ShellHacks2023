@@ -29,6 +29,20 @@
 }
 
 
+#choicePrompt.hidden {
+    height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden;
+}
+
+#choicePrompt:not(.hidden) {
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    opacity: 1;
+    overflow: visible;
+}
+
 #choices {
     display: flex;
     flex-direction: column;
