@@ -3,15 +3,15 @@ var environmentalEffects = {
     "inCave": false, // done
     "inTown": false,
     "inDungeon": false, // done
-    "lightLevel": 0.65, // done
+    "lightLevelPercent": 0.65, // done
     "isRaining": false, // done
     "isSnowing": false // done
 }
 
 
-function getColorFromLightLevel(lightLevel) {
-    // Ensure lightLevel is between 0 and 1
-    lightLevel = Math.max(0, Math.min(1, lightLevel));
+function getColorFromlightLevel(lightLevelPercent) {
+    // Ensure lightLevelPercent is between 0 and 1
+    lightLevelPercent = Math.max(0, Math.min(1, lightLevelPercent));
     var color1;
     // Decompose the colors into RGB components
     if (environmentalEffects.inForest) {
@@ -25,17 +25,17 @@ function getColorFromLightLevel(lightLevel) {
     const color2 = { r: 40, g: 0, b: 40 };
 
     // Compute the interpolated RGB values
-    const r = Math.round(color1.r * lightLevel + color2.r * (1 - lightLevel));
-    const g = Math.round(color1.g * lightLevel + color2.g * (1 - lightLevel));
-    const b = Math.round(color1.b * lightLevel + color2.b * (1 - lightLevel));
+    const r = Math.round(color1.r * lightLevelPercent + color2.r * (1 - lightLevelPercent));
+    const g = Math.round(color1.g * lightLevelPercent + color2.g * (1 - lightLevelPercent));
+    const b = Math.round(color1.b * lightLevelPercent + color2.b * (1 - lightLevelPercent));
 
     // Convert the RGB values to a hex color string
     return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
 function setBackgroundFromEffects(environmentalEffects) {
-    var firstBackgroundColor = getColorFromLightLevel(environmentalEffects.lightLevel);
-    var secondBackgroundColor = getColorFromLightLevel(environmentalEffects.lightLevel - 0.2);
+    var firstBackgroundColor = getColorFromlightLevel(environmentalEffects.lightLevelPercent);
+    var secondBackgroundColor = getColorFromlightLevel(environmentalEffects.lightLevelPercent - 0.2);
     var backgroundGradient = `linear-gradient(45deg, ${firstBackgroundColor}, ${secondBackgroundColor})`;
     // Set bg image
     if (environmentalEffects.inDungeon) {
