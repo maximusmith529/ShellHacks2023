@@ -18,13 +18,12 @@ async function askGPT(message) {
     presence_penalty: 0,
     messages: tempMessages
   };
-  valid = false;
-  while (valid == false) {
-    try {
+    try
+    {
       let response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer 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', // Replace with your API key
+          'Authorization': 'Bearer KEY', // Replace with your API key
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody)
@@ -32,21 +31,21 @@ async function askGPT(message) {
 
       const data = await response.json();
       console.log(data)
-      try {
 
+      try
+      { 
+        console.log(JSON.parse(data.choices[0].message.content))
         messageBuilder(new Message("system", JSON.parse(data.choices[0].message.content).messageToPlayer));
-        valid = true;
+        askForChoice(JSON.parse(data.choices[0].message.content).potentialActions);
       }
       catch (error) {
         messageBuilder(new Message("system", data.choices[0].message.content));
         console.error("FORMAT FAILED FAILBACK: NO JSON");
-        valid = true;
       }
       return data.choices[0].message;
     } catch (error) {
       console.error('Error calling the ChatGPT API:', error);
       return 'Error getting response.';
     }
-  }
 }
 
