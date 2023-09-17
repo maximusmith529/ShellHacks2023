@@ -106,7 +106,7 @@ let characterInformation;
 $("#characterCreateButton").click(function () {
     characterInformation = {
         name: $("#characterNameInput").val() ? $("#characterNameInput").val() : "Unnamed",
-        health: 20,
+        health: $("#Constitution").attr("value")*2,
         class: currentClass,
         race: currentRace,
         stats: {
@@ -115,7 +115,8 @@ $("#characterCreateButton").click(function () {
             constitution: $("#Constitution").attr("value"),
             intelligence: $("#Intelligence").attr("value"),
             wisdom: $("#Wisdom").attr("value"),
-            charisma: $("#Charisma").attr("value")
+            charisma: $("#Charisma").attr("value"),
+            hp: $("#Constitution").attr("value")*2
         }
     }
 
