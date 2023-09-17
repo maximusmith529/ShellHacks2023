@@ -39,8 +39,8 @@ let racesContainer = $("#characterRaceButtons");
 let statsContainer = $("#statFieldsContainer");
 let pointsLeft = $("#pointsLeft");
 
-let currentClass = "";
-let currentRace = "";
+let currentClass = "Barbarian";
+let currentRace = "Dragonborn";
 
 for (let i = 0; i < classes.length; i++) {
     let button = $("<div>");
@@ -105,7 +105,7 @@ let characterInformation;
 
 $("#characterCreateButton").click(function () {
     characterInformation = {
-        name: $("#characterNameInput").val(),
+        name: $("#characterNameInput").val() ? $("#characterNameInput").val() : "Unnamed",
         health: 20,
         class: currentClass,
         race: currentRace,
@@ -121,6 +121,19 @@ $("#characterCreateButton").click(function () {
 
     $("#characterCreationScreen").hide();
     updateSidebar();
+
+    askGPT("Lets start the adventure!")
+    var messagePreviewMessage = $("<div></div>").attr("id", "messagePreviewMessage").addClass("message");
+    var messagePreview = $("<div></div>").attr("id", "messagePreview").addClass("frosted")
+    // Add 3 dots, each with a css variable for their index
+    for (var i = 0; i < 3; i++) {
+        var dot = $("<div></div>").addClass("dot").css("--dot-index", i);
+        messagePreview.append(dot);
+    }
+
+    messagePreviewMessage.append(messagePreview);
+    $("#messages").append(messagePreviewMessage);
+
 });
 
 function setActiveClass(selection) {

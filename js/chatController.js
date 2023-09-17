@@ -18,7 +18,7 @@ var messages = [];
 
 
 function messageBuilder(messageData) {
-    if(messageData.from == "INFO")
+    if (messageData.from == "INFO")
         return;
     var message = $("<div></div>").addClass("message");
     messages.push(messageData);
@@ -36,8 +36,6 @@ function messageBuilder(messageData) {
     message.append(messageContent);
     $("#messages").append(message);
 }
-
-
 
 function sendMessage() {
     var message = new Message("user", $("#chatInputBox").val());
