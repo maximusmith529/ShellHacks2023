@@ -62,7 +62,10 @@ function sendMessage() {
 
     messagePreviewMessage.append(messagePreview);
     $("#messages").append(messagePreviewMessage);
-    askGPT(message.content)
+    askGPT(message.content);
+
+    $("#choices").empty();
+    $("#choicePrompt").removeClass("hidden");
 }
 
 
