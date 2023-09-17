@@ -39,8 +39,8 @@ function rollDice(diceNumber) {
     // Calculate the dice roll
     var rollResult = Math.floor(Math.random() * diceNumber) + 1;
 
-    
-    
+
+
     return rollResult;
 }
 
@@ -61,11 +61,12 @@ function promptToRoll(diceNumber) {
     });
 }
 
-
+var previewCreated = false;
 function visualRollDice(rollResult, diceNumber, oldScreen) {
     // Swap between numbers randomly from 1 to the dice number and after 10 times stop on the roll result
     var rollCount = 0;
     let rollButton = $("#rollPromptButton");
+    previewCreated = false;
     rollButton.addClass("disabled");
     var rollInterval = setInterval(function () {
         rollCount++;
@@ -73,7 +74,20 @@ function visualRollDice(rollResult, diceNumber, oldScreen) {
         if (rollCount > 10) {
             clearInterval(rollInterval);
             $("#dicePreview").text(rollResult);
-            setTimeout(function () { 
+            if (!previewCreated) {
+                previewCreated = true;
+                var messagePreviewMessage = $("<div></div>").attr("id", "messagePreviewMessage").addClass("message");
+                var messagePreview = $("<div></div>").attr("id", "messagePreview").addClass("frosted")
+                // Add 3 dots, each with a css variable for their index
+                for (var i = 0; i < 3; i++) {
+                    var dot = $("<div></div>").addClass("dot").css("--dot-index", i);
+                    messagePreview.append(dot);
+                }
+
+                messagePreviewMessage.append(messagePreview);
+                $("#messages").append(messagePreviewMessage);
+            }
+            setTimeout(function () {
                 showContentScreen(oldScreen);
                 rollButton.removeClass("disabled");
             }, 1000);
@@ -94,29 +108,31 @@ function skillCheckRoll(generatedRoll) {
     if (tmpData.requiredRollStat == null) return;
 
     let skillOffset = 0;
-    switch (tmpData.requiredRollStat.toLowerCase())
-    {
+    switch (tmpData.requiredRollStat.toLowerCase()) {
         case "strength":
-            skillOffset += (characterInformation.stats.strength - 10)/2;
+            skillOffset += (characterInformation.stats.strength - 10) / 2;
             break;
         case "dexterity":
-            skillOffset += (characterInformation.stats.dexterity - 10)/2;
+            skillOffset += (characterInformation.stats.dexterity - 10) / 2;
             break;
         case "constitution":
-            skillOffset += (characterInformation.stats.constitution - 10)/2;
+            skillOffset += (characterInformation.stats.constitution - 10) / 2;
             break;
         case "intelligence":
-            skillOffset += (characterInformation.stats.intelligence - 10)/2;
+            skillOffset += (characterInformation.stats.intelligence - 10) / 2;
             break;
         case "wisdom":
-            skillOffset += (characterInformation.stats.wisdom - 10)/2;
+            skillOffset += (characterInformation.stats.wisdom - 10) / 2;
             break;
         case "charisma":
-            skillOffset += (characterInformation.stats.charisma - 10)/2;
+            skillOffset += (characterInformation.stats.charisma - 10) / 2;
             break;
     }
 
-    let tmpString = ("I rolled a " + ((generatedRoll == 1 || generatedRoll == 20) ? generatedRoll : Math.floor(generatedRoll + skillOffset)) + (generatedRoll + skillOffset >= tmpData.requiredRollDC ? ", I succeeded":", I failed") );
+    let tmpString = ("I rolled a " + ((generatedRoll == 1 || generatedRoll == 20) ? generatedRoll : Math.floor(generatedRoll + skillOffset)));
+    messageBuilder(new Message("user", tmpString));
+    messages.push(new Message("user", tmpString));
+
     askGPT(tmpString);
 }
 
