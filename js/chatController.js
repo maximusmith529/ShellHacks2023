@@ -2,7 +2,7 @@ class Message {
     from;
     content;
     constructor(from, content) {
-        this.from = from == "user" ? "user" : "system";
+        this.from = from;
         this.content = content;
     }
 
@@ -18,6 +18,8 @@ var messages = [];
 
 
 function messageBuilder(messageData) {
+    if(messageData.from == "INFO")
+        return;
     var message = $("<div></div>").addClass("message");
     messages.push(messageData);
     var messageContent = $("<div></div>").addClass("messageContent").addClass("frosted");

@@ -30,7 +30,33 @@ async function askGPT(message) {
 
         const data = await response.json();
         console.log(data)
-        messageBuilder(new Message("system", JSON.parse(data.choices[0].message.content).messageToPlayer));
+        valid = false;
+        while (valid == false){
+          try{
+            messageBuilder(new Message("system", JSON.parse(data.choices[0].message.content).messageToPlayer));
+            valid = true;
+          }
+          catch(error){
+            messages = messages.concat({"role":"INFO", "content":"Remember to stay in JSON format. Try again;"});
+            console.error("JSON Format Failed repeating");
+            tempMessages = [{ "role": "system", "content": systemPrompt }].concat(messages.map(
+              message => {
+                  return { "role": message.from, "content": message.content };
+              }
+          )).concat([{ "role": "user", "content": message }]);
+          requestBody = {
+            model: "gpt-4",
+            max_tokens: 256,
+            temperature: 1,
+            top_p: 0,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+            messages: tempMessages
+        };
+            valid = false;
+            continue;
+          }
+        }
         return data.choices[0].message;
     } catch (error) {
         console.error('Error calling the ChatGPT API:', error);
