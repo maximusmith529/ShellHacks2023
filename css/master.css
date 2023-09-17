@@ -3,7 +3,7 @@
     --main-font-color: #FFF;
     --main-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
     --frosted-glass-color: rgba(3, 3, 3, 0.35);
-    --frosted-glass-hover-color: rgba(10, 10, 10, 0.35);
+    --frosted-glass-hover-color: rgba(50, 50, 50, 0.35);
     --body-font: 'Arial', sans-serif;
     --item-size: 8rem;
     --inventory-gap: 4rem;
@@ -12,8 +12,8 @@
 }
 
 body {
-    background: linear-gradient(45deg, #fecc66, #f75c03);
     color: var(--main-font-color);
+    background: linear-gradient(0deg, #9f6673, #793d78);
     font-family: var(--body-font);
     margin: 0;
     padding: 0;
@@ -21,12 +21,22 @@ body {
     flex-direction: row;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
+
+#rainCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
 
 #content {
     width: 100%;
     height: 100vh;
+    position: relative;
 }
 
 
@@ -44,7 +54,25 @@ body {
 
 
 .contentScreen {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+}
+
+.contentScreen:not(.firstTimers) {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.contentScreen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.frosted {
+    background-color: var(--frosted-glass-color);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
