@@ -2,7 +2,7 @@
 {
     "messageToPlayer": "String",
     "requiredRollType (OPTIONAL)": "String",
-    "requiredDifficultyClass (OPTIONAL) (requiredRollType REQUIRED)": "Int",
+    "requiredRollDC (OPTIONAL) (requiredRollType REQUIRED)": "Int",
     "potentialActions (OPTIONAL) [MAX LENGTH: 3]": [
         "STRING"
     ],
