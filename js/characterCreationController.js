@@ -1,4 +1,4 @@
-let races = [
+const races = [
     "Dragonborn",
     "Dwarf",
     "Elf",
@@ -10,7 +10,7 @@ let races = [
     "Tiefling"
 ]
 
-let classes = [
+const classes = [
     "Barbarian",
     "Bard",
     "Cleric",
@@ -25,7 +25,7 @@ let classes = [
     "Wizard"
 ]
 
-let stats = [
+const stats = [
     "Strength",
     "Dexterity",
     "Constitution",
