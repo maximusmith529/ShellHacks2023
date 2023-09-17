@@ -33,15 +33,18 @@
 .sidebarSubheader {
     font-size: 1.4rem;
     font-weight: 400;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    text-align: left;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 70%;
+    text-align: center;
     display: flex;
     flex-direction: row;
+    place-self: center;
+    border-radius: 20px;
     justify-content: space-between;
+    background-color: var(--frosted-glass-color);
 }
 
-.sidebarSubheader .value {}
 
 #statsTitle {
 

@@ -27,6 +27,7 @@ function messageBuilder(messageData) {
         messageContent.addClass("botMessage");
         // Remove messagePreview
         $("#messagePreviewMessage").remove();
+        $("#chatInputBox").focus();
     }
     else {
         messageContent.addClass("userMessage");
@@ -35,6 +36,8 @@ function messageBuilder(messageData) {
     messageContent.text(messageData.content);
     message.append(messageContent);
     $("#messages").append(message);
+    // Have messages scroll to the bottom, animated
+    $("#messages").animate({ scrollTop: $("#messages")[0].scrollHeight }, 200);
 }
 
 function sendMessage() {
@@ -80,3 +83,4 @@ $("#chatInputBox").on("keyup", function (event) {
 
 // Do the same thing if chatSendButton is clicked
 $("#chatSendButton").on("click", sendMessage);
+
