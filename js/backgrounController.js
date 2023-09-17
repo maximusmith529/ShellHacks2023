@@ -1,9 +1,9 @@
 var environmentalEffects = {
-    "inForest": true, // done
+    "inForest": false, // done
     "inCave": false, // done
     "inTown": false,
     "inDungeon": false, // done
-    "lightLevel": 1, // done
+    "lightLevel": 0.65, // done
     "isRaining": false, // done
     "isSnowing": false // done
 }
