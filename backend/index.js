@@ -24,7 +24,7 @@ async function askGPT(message)
       let response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer APIKey', // Replace with your API key
+          'Authorization': 'Bearer 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', // Replace with your API key
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody)

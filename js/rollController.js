@@ -38,27 +38,25 @@ const dice = {
 function rollDice(diceNumber) {
     // Calculate the dice roll
     var rollResult = Math.floor(Math.random() * diceNumber) + 1;
-    promptToRoll(rollResult, diceNumber);
-    let tmpData = JSON.parse(gptData.choices[0].message.content);
-    let tmpString = ("I rolled a " + ((rollResult == 1 || rollResult == 20) ? rollResult:Math.floor(skillCheckRoll(rollResult, tmpData.requiredRollStat))) + (skillCheckRoll(rollResult, tmpData.requiredRollStat) >= tmpData.requiredRollDC ? ", I succeeded":", I failed") );
-    console.log(tmpString);
-    askGPT(tmpString);
 
+    
+    
     return rollResult;
 }
 
 
 // Gets run after the roll is calculated but before the dice is rolled
-function promptToRoll(rollResult, diceNumber) {
+function promptToRoll(diceNumber) {
     var oldScreen = $(".activeScreen").attr("id");
     showContentScreen("rollScreen");
-    $("#rollPromptText .value").text(dice[diceNumber].name);
     $("#dicePreview").css("clip-path", dice[diceNumber].shape);
     $("#dicePreview").text(diceNumber);
     $("#dicePreview").css("background-color", dice[diceNumber].color);
 
     $("#rollPromptButton").click(() => {
         // Roll the dice
+        let rollResult = Math.floor(Math.random() * diceNumber) + 1;
+        skillCheckRoll(rollResult);
         visualRollDice(rollResult, diceNumber, oldScreen);
     });
 }
@@ -67,6 +65,8 @@ function promptToRoll(rollResult, diceNumber) {
 function visualRollDice(rollResult, diceNumber, oldScreen) {
     // Swap between numbers randomly from 1 to the dice number and after 10 times stop on the roll result
     var rollCount = 0;
+    let rollButton = $("#rollPromptButton");
+    rollButton.addClass("disabled");
     var rollInterval = setInterval(function () {
         rollCount++;
         $("#dicePreview").text(Math.floor(Math.random() * diceNumber) + 1);
@@ -75,36 +75,47 @@ function visualRollDice(rollResult, diceNumber, oldScreen) {
             $("#dicePreview").text(rollResult);
             setTimeout(function () { 
                 showContentScreen(oldScreen);
+                rollButton.removeClass("disabled");
             }, 1000);
         }
     }, 100);
 
 }
 
-function skillCheckRoll(generatedRoll, rolltype) {
-    switch (rolltype.toLowerCase())
+function skillCheckRoll(generatedRoll) {
+    if (gptData == null) return;
+    if (gptData.choices[0].message.content == null) return;
+
+    let tmpData = JSON.parse(gptData.choices[0].message.content);
+
+    if (tmpData.requiredRollStat == null) return;
+
+    let skillOffset = 0;
+    switch (tmpData.requiredRollStat.toLowerCase())
     {
         case "strength":
-            generatedRoll += (characterInformation.stats.strength - 10)/2;
+            skillOffset += (characterInformation.stats.strength - 10)/2;
             break;
         case "dexterity":
-            generatedRoll += (characterInformation.stats.dexterity - 10)/2;
+            skillOffset += (characterInformation.stats.dexterity - 10)/2;
             break;
         case "constitution":
-            generatedRoll += (characterInformation.stats.constitution - 10)/2;
+            skillOffset += (characterInformation.stats.constitution - 10)/2;
             break;
         case "intelligence":
-            generatedRoll += (characterInformation.stats.intelligence - 10)/2;
+            skillOffset += (characterInformation.stats.intelligence - 10)/2;
             break;
         case "wisdom":
-            generatedRoll += (characterInformation.stats.wisdom - 10)/2;
+            skillOffset += (characterInformation.stats.wisdom - 10)/2;
             break;
         case "charisma":
-            generatedRoll += (characterInformation.stats.charisma - 10)/2;
+            skillOffset += (characterInformation.stats.charisma - 10)/2;
             break;
     }
 
-    return generatedRoll;
+    let tmpString = ("I rolled a " + ((generatedRoll == 1 || generatedRoll == 20) ? generatedRoll : Math.floor(generatedRoll + skillOffset)) + (generatedRoll + skillOffset >= tmpData.requiredRollDC ? ", I succeeded":", I failed") );
+    askGPT(tmpString);
 }
 
-$("#diceRollButton").click(() => rollDice(20));
+$("#diceRollButton").click(() => promptToRoll(20));
+$("#diceRollClose").click(() => showContentScreen("chatScreen"));

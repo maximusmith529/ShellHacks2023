@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 20px;
     text-align: center;
 }
@@ -19,4 +19,31 @@
     font-size: 150px;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
+}
+
+#diceRollClose {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: fit-content;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    border-radius: 15px;
+}
+
+#rollPromptButton {
+    margin-top: 2rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    border-radius: 15px;
+}
+
+#rollPromptButton.disabled {
+    filter: brightness(0.5);
+}
+
+#rollPromptButton.disabled:hover {
+    cursor: default;
+    background-color: transparent !important;
 }
