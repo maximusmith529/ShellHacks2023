@@ -39,6 +39,11 @@ function rollDice(diceNumber) {
     // Calculate the dice roll
     var rollResult = Math.floor(Math.random() * diceNumber) + 1;
     promptToRoll(rollResult, diceNumber);
+    let tmpData = JSON.parse(gptData.choices[0].message.content);
+    let tmpString = ("I rolled a " + ((rollResult == 1 || rollResult == 20) ? rollResult:Math.floor(skillCheckRoll(rollResult, tmpData.requiredRollStat))) + (skillCheckRoll(rollResult, tmpData.requiredRollStat) >= tmpData.requiredRollDC ? ", I succeeded":", I failed") );
+    console.log(tmpString);
+    askGPT(tmpString);
+
     return rollResult;
 }
 
@@ -55,8 +60,6 @@ function promptToRoll(rollResult, diceNumber) {
     $("#rollPromptButton").click(() => {
         // Roll the dice
         visualRollDice(rollResult, diceNumber, oldScreen);
-        let tmpData = JSON.parse(data.choices[0].message.content);
-        askGPT(skillCheckRoll(rollResult, tmpData.requiredRollStat, tmpData.requiredDifficultyClass) ? "I passed the skill check" : "I failed the skill check");
     });
 }
 
