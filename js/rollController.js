@@ -84,6 +84,9 @@ function visualRollDice(rollResult, diceNumber, oldScreen) {
 
 function skillCheckRoll(generatedRoll) {
     if (gptData == null) return;
+    if (gptData.choices == null) return;
+    if (gptData.choices.length == 0) return;
+    if (gptData.choices[0] == null) return;
     if (gptData.choices[0].message.content == null) return;
 
     let tmpData = JSON.parse(gptData.choices[0].message.content);
