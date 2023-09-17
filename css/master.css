@@ -2,7 +2,7 @@
     --main-background-color: #400080;
     --main-font-color: #FFF;
     --main-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
-    --frosted-glass-color: rgba(3, 3, 3, 0.35);
+    --frosted-glass-color: rgba(3, 3, 3, 0.5);
     --frosted-glass-hover-color: rgba(50, 50, 50, 0.35);
     --body-font: 'Arial', sans-serif;
     --item-size: 8rem;

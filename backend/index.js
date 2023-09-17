@@ -56,8 +56,4 @@ async function askGPT(message)
     }
   }
 }
-//funciton for testing
-// async function main() {
-//   const answer = await sendMessage("hello");
-//   console.log(answer);
-// }
+

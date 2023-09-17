@@ -21,6 +21,7 @@
     <script async defer src="js/choiceController.js"></script>
     <script async defer src="js/backgrounController.js"></script>
     <script async defer src="backend/index.js"></script>
+    <script async defer src="js/sidebarController.js"></script>
     <!-- Favicon  -->
     <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
@@ -31,7 +32,7 @@
             <h1>Create your hero</h1>
             <div class="characterField vertical">
                 <label for="characterName">Name:</label>
-                <input name="characterName" type="text" id="characterNameInput" placeholder="Name">
+                <input name="characterName" type="text" class="frosted" id="characterNameInput" placeholder="Name">
             </div>
             <div class="characterField vertical">
                 <label>Class:</label>
@@ -55,38 +56,37 @@
         <div id="health" class="sidebarSubheader">Health: <span class="value">20</span></div>
         <div id="class" class="sidebarSubheader">Class: <span class="value">Mage</span></div>
         <div id="race" class="sidebarSubheader">Race: <span class="value">Dwarf</span></div>
-        <div id="amorClass" class="sidebarSubheader">Armor Class: <span class="value">10</span></div>
         <div class="sidebarTitle" id="statsTitle">Stats</div>
         <div id="statsContainer">
-            <div class="stat">
+            <div class="stat" stat="Strength">
                 <div class="value">6</div>
                 <div class="statName">STR</div>
             </div>
-            <div class="stat">
+            <div class="stat" stat="Dexterity">
                 <div class="value">2</div>
                 <div class="statName">DEX</div>
             </div>
-            <div class="stat">
+            <div class="stat" stat="Constitution">
                 <div class="value">25</div>
                 <div class="statName">CONS</div>
             </div>
-            <div class="stat">
+            <div class="stat" stat="Intelligence">
                 <div class="value">3</div>
                 <div class="statName">INT</div>
             </div>
-            <div class="stat">
+            <div class="stat" stat="Wisdom">
                 <div class="value">9</div>
                 <div class="statName">WIS</div>
             </div>
-            <div class="stat">
+            <div class="stat" stat="Charisma">
                 <div class="value">12</div>
                 <div class="statName">CHR</div>
             </div>
         </div>
-        <div id="bottomButtons">
+        <!-- <div id="bottomButtons">
             <div class="button">Inventory</div>
             <div class="button">Settings</div>
-        </div>
+        </div> -->
     </div>
     <div id="content">
         <div id="chatScreen" class="contentScreen">

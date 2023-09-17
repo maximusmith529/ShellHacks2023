@@ -3,7 +3,7 @@
     z-index: 10;
     width: 100vw;
     height: 100vh;
-    background-color: var(--main-background-color);
+    background: linear-gradient(45deg, #fecc66, #793d78);
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -51,7 +51,6 @@
     padding: 0.5rem 1rem 0.5rem 1rem;
     border: none;
     outline: none;
-    background-color: var(--frosted-glass-color);
     color: var(--main-font-color);
     box-sizing: border-box;
     border-radius: 25px;
