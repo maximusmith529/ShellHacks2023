@@ -23,7 +23,7 @@ async function askGPT(message) {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer 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', // Replace with your API key
+                'Authorization': 'Bearer SLOTFORAPIKEY', // Replace with your API key
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
