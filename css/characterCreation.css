@@ -3,8 +3,7 @@
     z-index: 10;
     width: 100vw;
     height: 100vh;
-    background: url("../images/brickWall.jpg");
-    background-blend-mode: lighten;
+    background: linear-gradient(45deg, #fecc66, #793d78);
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
