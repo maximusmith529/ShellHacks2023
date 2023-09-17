@@ -39,8 +39,8 @@ let racesContainer = $("#characterRaceButtons");
 let statsContainer = $("#statFieldsContainer");
 let pointsLeft = $("#pointsLeft");
 
-let currentClass = "";
-let currentRace = "";
+let currentClass = "Barbarian";
+let currentRace = "Dragonborn";
 
 for (let i = 0; i < classes.length; i++) {
     let button = $("<div>");
@@ -105,7 +105,7 @@ let characterInformation;
 
 $("#characterCreateButton").click(function () {
     characterInformation = {
-        name: $("#characterNameInput").val(),
+        name: $("#characterNameInput").val() ? $("#characterNameInput").val() : "Unnamed",
         health: 20,
         class: currentClass,
         race: currentRace,
