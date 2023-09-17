@@ -80,7 +80,7 @@ for (i = 0; i < stats.length; i++) {
     stat.append(statValue);
 
     let statValueText = $("<div>");
-    statValueText.text(stat.attr("value"));
+    statValueText.text(stat.attr("value")).addClass("statValueFieldValue");
 
     let decrement = $("<div>");
     decrement.addClass("button");
