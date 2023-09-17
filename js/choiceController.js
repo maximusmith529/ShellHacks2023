@@ -3,7 +3,9 @@ $("#choicePrompt").addClass("hidden");
 function choiceBuilder(option, index, callback) {
     $("#choices").append($(`<div class="option frosted button">${option}</div>`).css("--index", index).on("click", () => {
         $("#choicePrompt").addClass("hidden");
-        messageBuilder(new Message("user", option));
+        var message = new Message("user", option)
+        messageBuilder(message);
+        messages.push(message);
         askGPT(option)
         callback(option);
     }));
