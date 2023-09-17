@@ -63,8 +63,3 @@ async function askGPT(message) {
         return 'Error getting response.';
     }
 }
-//funciton for testing
-// async function main() {
-//   const answer = await sendMessage("hello");
-//   console.log(answer);
-// }
