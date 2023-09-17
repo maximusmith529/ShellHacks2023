@@ -31,15 +31,24 @@ async function askGPT(message) {
 
       const data = await response.json();
       console.log(data)
-
+      environmentalEffects = false;
       try
-      { 
+      {
         console.log(JSON.parse(data.choices[0].message.content))
         messageBuilder(new Message("system", JSON.parse(data.choices[0].message.content).messageToPlayer));
-        askForChoice(JSON.parse(data.choices[0].message.content).potentialActions);
+        askForChoice(JSON.parse(data.choices[0].message.content).potentialActions);       
+        //set the environmental factors
+        environmentalEffects = JSON.parse(data.choices[0].message.content).environmentalEffects;
+        setBackgroundFromEffects(environmentalEffects);
       }
       catch (error) {
-        messageBuilder(new Message("system", data.choices[0].message.content));
+        try{
+          messageBuilder(new Message("system", data.messageToPlayer));
+        }
+        catch{
+          messageBuilder(new Message("system", data.choices[0].message.content));
+          console.error("FORMAT FAILED FAILBACK: NO JSON 2");
+        }
         console.error("FORMAT FAILED FAILBACK: NO JSON");
       }
       return data.choices[0].message;
@@ -48,4 +57,3 @@ async function askGPT(message) {
       return 'Error getting response.';
     }
 }
-
