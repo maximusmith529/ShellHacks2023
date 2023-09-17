@@ -76,3 +76,30 @@ function visualRollDice(rollResult, diceNumber, oldScreen) {
 
 }
 
+function skillCheckRoll(rolltype, difficultyClass) {
+    let roll = rollDice(20);
+
+    switch (rolltype)
+    {
+        case "Strength":
+            roll += characterInformation.stats.strength - 10;
+            break;
+        case "Dexterity":
+            roll += characterInformation.stats.dexterity - 10;
+            break;
+        case "Constitution":
+            roll += characterInformation.stats.constitution - 10;
+            break;
+        case "Intelligence":
+            roll += characterInformation.stats.intelligence - 10;
+            break;
+        case "Wisdom":
+            roll += characterInformation.stats.wisdom - 10;
+            break;
+        case "Charisma":
+            roll += characterInformation.stats.charisma - 10;
+            break;
+    }
+
+    return roll >= difficultyClass;
+}
