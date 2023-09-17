@@ -106,6 +106,7 @@ let characterInformation;
 $("#characterCreateButton").click(function() {
     characterInformation = {
         name: $("#characterNameInput").val(),
+        health: 20,
         class: currentClass,
         race: currentRace,
         stats: {
@@ -119,6 +120,7 @@ $("#characterCreateButton").click(function() {
     }
 
     $("#characterCreationScreen").hide();
+    updateSidebar();
 });
 
 function setActiveClass(selection) {
