@@ -9,7 +9,7 @@ async function askGPT(message)
     message => {
       return { "role": message.from, "content": message.content };
     }
-  )).concat([{ "role": "user", "content": message }]);
+  )).concat([{ "role": "user", "content": message },{"role":"system", "content":"remain in JSON format."}]);
   let requestBody = {
     model: "gpt-4",
     max_tokens: 256,
@@ -57,6 +57,7 @@ async function askGPT(message)
         catch{
           messageBuilder(new Message("system", gptData.choices[0].message.content));
           console.error("FORMAT FAILED FAILBACK: NO JSON 2");
+          return;
         }
         console.error("FORMAT FAILED FAILBACK: NO JSON");
       }
