@@ -9,18 +9,43 @@
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="css/roll.css">
     <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/characterCreation.css">
     <title>Story Forge</title>
     <script src="js/jquery.js"></script>
     <script async defer src="js/chatController.js"></script>
     <script async defer src="js/contentController.js"></script>
     <script async defer src="js/rollController.js"></script>
+    <script async defer src="js/characterCreationController.js"></script>
     <!-- Favicon  -->
     <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
 
 <body>
+    <div id="characterCreationScreen">
+        <div id="characterCreationContent">
+            <h1>Create your hero</h1>
+            <div class="characterField vertical">
+                <label for="characterName">Name:</label>
+                <input name="characterName" type="text" id="characterNameInput" placeholder="Name">
+            </div>
+            <div class="characterField vertical">
+                <label>Class:</label>
+                <div id="characterClassButtons"></div>
+            </div>
+            <div class="characterField vertical">
+                <label>Race:</label>
+                <div id="characterRaceButtons"></div>
+            </div>
+            <div class="characterField vertical">
+                <label>Stats:</label>
+                <div id="statFieldsContainer"></div>
+                <label id="pointsLeft">Points left: 20</label>
+            </div>
+            <div class="button" id="characterCreateButton">Enter your adventure!</div>
+        </div>
+    </div>
     <div id="sidebar" class="frosted">
-        <div id="name">Rupert the Ball Stomper </div>
+        <div id="name">Rupert the Ball Stomper</div>
         <div id="health" class="sidebarSubheader">Health: <span class="value">20</span></div>
         <div id="class" class="sidebarSubheader">Class: <span class="value">Mage</span></div>
         <div id="race" class="sidebarSubheader">Race: <span class="value">Dwarf</span></div>
