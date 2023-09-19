@@ -46,20 +46,30 @@ function rollDice(diceNumber) {
 
 
 // Gets run after the roll is calculated but before the dice is rolled
-function promptToRoll(diceNumber) {
-    var oldScreen = $(".activeScreen").attr("id");
-    showContentScreen("rollScreen");
-    $("#dicePreview").css("clip-path", dice[diceNumber].shape);
-    $("#dicePreview").text(diceNumber);
-    $("#dicePreview").css("background-color", dice[diceNumber].color);
+var currentDiceNumber = 20;
+var currentOldScreen = document.querySelector(".activeScreen").id;
 
-    $("#rollPromptButton").click(() => {
-        // Roll the dice
-        let rollResult = Math.floor(Math.random() * diceNumber) + 1;
-        skillCheckRoll(rollResult);
-        visualRollDice(rollResult, diceNumber, oldScreen);
-    });
+function promptToRoll(diceNumber) {
+    currentOldScreen = document.querySelector(".activeScreen").id;
+    showContentScreen("rollScreen");
+
+    var dicePreview = document.getElementById("dicePreview");
+    dicePreview.style.clipPath = dice[diceNumber].shape;
+    dicePreview.textContent = diceNumber;
+    dicePreview.style.backgroundColor = dice[diceNumber].color;
+
+    // Update the global variables
+    currentDiceNumber = diceNumber;
 }
+
+function handleRollButtonClick() {
+    if (currentDiceNumber && currentOldScreen) {
+        let rollResult = Math.floor(Math.random() * currentDiceNumber) + 1;
+        skillCheckRoll(rollResult);
+        visualRollDice(rollResult, currentDiceNumber, currentOldScreen);
+    }
+}
+
 
 var previewCreated = false;
 function visualRollDice(rollResult, diceNumber, oldScreen) {
