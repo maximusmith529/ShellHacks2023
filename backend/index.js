@@ -4,12 +4,12 @@
 var gptData
 async function askGPT(message)
 {
-  const systemPrompt = "You are a Dungeon Master for a table-top based game. The game system should be dungeons and dragons based with rolls to determine outcomes. The setting in which you have the game should be low fantasy\n\nYour responses should follow this format. Do not repeat (OPTIONAL) values that do not change for example the stats. Always include at least one option. DO NOT HAVE ANYTHING OUTSIDE OF THE JSON. \n\n{\n    \"messageToPlayer (REQUIRED)\": \"String\",\n    \"requiredRollStat (OPTIONAL)\": \"String\",\n \"requiredRollDC (OPTIONAL)\": \"Int\",\n \"healthChange (OPTIONAL)\": \"Int\",\n    \"potentialActions [MAX LENGTH: 3]\": [\n        \"STRING\"\n    ],\n    \"environmentalEffects\": {\n        \"inForest (OPTIONAL)\": \"Boolean\",\n        \"inCave (OPTIONAL)\": \"Boolean\",\n        \"inTown (OPTIONAL)\": \"Boolean\",\n        \"inDungeon (OPTIONAL)\": \"Boolean\",\n        \"lightLevelPercent (OPTIONAL)\": \"Double\",\n        \"isRaining (OPTIONAL)\": \"Boolean\",\n        \"isSnowing (OPTIONAL)\": \"Boolean\"\n    },\n    \"characterStats\":{\n        \"strength (OPTIONAL)\": \"Int\",\n        \"health (OPTIONAL)\": \"Int\",\n        \"intelligence (OPTIONAL)\": \"Int\",\n        \"dexterity (OPTIONAL)\": \"Int\",\n        \"charisma (OPTIONAL)\": \"Int\",\n        \"wisdom (OPTIONAL)\": \"Int\",\n        \"constitution (OPTIONAL)\": \"Int\"\n    }\n}";
-  var tempMessages = [{ "role": "system", "content": systemPrompt }].concat(messages.map(
+  const systemPrompt = "You are a Dungeon Master for a table-top based game. The game system should be dungeons and dragons based with rolls to determine outcomes. The setting in which you have the game should be low fantasy\n\nYour responses should follow this format. Do not repeat (OPTIONAL) values that do not change for example the stats. Always include at least one option. DO NOT HAVE ANYTHING OUTSIDE OF THE JSON. \n\n{\n    \"messageToPlayer (REQUIRED)\": \"String\",\n    \"requiredRollStat (OPTIONAL)\": \"String\",\n \"requiredRollDC (OPTIONAL)\": \"Int\",\n \"healthChange (OPTIONAL)\": \"Int\",\n    \"potentialActions [MAX LENGTH: 3]\": [\n        \"STRING\"\n    ],\n    \"environmentalEffects\": {\n        \"inForest (OPTIONAL)\": \"Boolean\",\n        \"inCave (OPTIONAL)\": \"Boolean\",\n        \"inTown (OPTIONAL)\": \"Boolean\",\n        \"inDungeon (OPTIONAL)\": \"Boolean\",\n        \"lightLevelPercent (OPTIONAL)\": \"Double\",\n        \"isRaining (OPTIONAL)\": \"Boolean\",\n        \"isSnowing (OPTIONAL)\": \"Boolean\" }}";
+  var tempMessages = [{ "role": "system", "content": systemPrompt }, {"role": "system", "content": ("The player's class is "+characterInformation.class+" their race is "+characterInformation.race)}].concat(messages.map(
     message => {
       return { "role": message.from, "content": message.content };
     }
-  )).concat([{ "role": "user", "content": message },{"role":"system", "content":"remain in JSON format."}]);
+  )).concat([{ "role": "user", "content": message },{"role":"system", "content":"remain in JSON format. {\n    \"messageToPlayer (REQUIRED)\": \"String\",\n    \"requiredRollStat (OPTIONAL)\": \"String\",\n \"requiredRollDC (OPTIONAL)\": \"Int\",\n \"healthChange (OPTIONAL)\": \"Int\",\n    \"potentialActions [MAX LENGTH: 3]\": [\n        \"STRING\"\n    ],\n    \"environmentalEffects\": {\n        \"inForest (OPTIONAL)\": \"Boolean\",\n        \"inCave (OPTIONAL)\": \"Boolean\",\n        \"inTown (OPTIONAL)\": \"Boolean\",\n        \"inDungeon (OPTIONAL)\": \"Boolean\",\n        \"lightLevelPercent (OPTIONAL)\": \"Double\",\n        \"isRaining (OPTIONAL)\": \"Boolean\",\n        \"isSnowing (OPTIONAL)\": \"Boolean\" }}"}]);
   let requestBody = {
     model: "gpt-4",
     max_tokens: 256,
@@ -57,6 +57,7 @@ async function askGPT(message)
         catch{
           messageBuilder(new Message("system", gptData.choices[0].message.content));
           console.error("FORMAT FAILED FAILBACK: NO JSON 2");
+          console.error(tempMessages);
           return;
         }
         console.error("FORMAT FAILED FAILBACK: NO JSON");
