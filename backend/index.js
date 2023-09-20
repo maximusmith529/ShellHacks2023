@@ -48,19 +48,9 @@ async function askGPT(message)
         setBackgroundFromEffects(environmentalEffects);
       }
       catch (error) {
-        try{
-          messageBuilder(new Message("system", gptData.messageToPlayer));
-          askForChoice(gptData.potentialActions);       
-          environmentalEffects = gptData.environmentalEffects;
-          setBackgroundFromEffects(environmentalEffects);
-        }
-        catch{
-          messageBuilder(new Message("system", gptData.choices[0].message.content));
-          console.error("FORMAT FAILED FAILBACK: NO JSON 2");
-          console.error(tempMessages);
-          return;
-        }
+        askGPT(message);
         console.error("FORMAT FAILED FAILBACK: NO JSON");
+        return;
       }
       return gptData.choices[0].message;
     } catch (error) {
