@@ -11,7 +11,7 @@ var environmentalEffects = {
 
 function getColorFromlightLevel(lightLevelPercent) {
     // Ensure lightLevelPercent is between 0 and 1
-    lightLevelPercent = Math.max(0, Math.min(1, lightLevelPercent));
+    lightLevelPercent = Math.max(0, Math.min(1, lightLevelPercent/100));
     var color1;
     // Decompose the colors into RGB components
     if (environmentalEffects.inForest) {
