@@ -4,10 +4,10 @@
 **StoryForge** is a hackathon project designed to serve as an AI game master for tabletop adventure games like D&D. A collaborative effort between Matthew Sand, Alex Harris, and Seth Lenhof, we brought StoryForge to life within a span of 36 hours, resulting in a fully functional application.
 
 The gameplay revolves around character creation with customizable stats, immersing them in a generative world, and role-playing alongside the AI game master to explore and interact within this universe. Despite the time constraints, we managed to incorporate several features:
-- A dynamic rolling system with varying difficulties
-- Adaptive backgrounds that morph based on in-game time and setting
+- A rolling system with dynamic difficulties
+- Adaptive backgrounds based on in-game time and setting
 - A menu suggesting potential actions
-- Basic combat mechanisms
+- Basic combat mechanics
 
 ## 🎮 Gameplay ft. Adaptive Background 
 
